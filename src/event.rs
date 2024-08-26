@@ -1,8 +1,9 @@
+use std::any::Any;
 use std::path::PathBuf;
 
-pub trait Event: std::fmt::Debug + Send + Sync + 'static {
+pub trait Event: Send + Sync {
     fn event_type(&self) -> &'static str;
-    fn as_any(&self) -> &dyn std::any::Any;
+    fn as_any(&self) -> &dyn Any;
 }
 
 #[derive(Debug, Clone)]
@@ -17,7 +18,7 @@ impl Event for FileReadEvent {
         "file_read"
     }
 
-    fn as_any(&self) -> &dyn std::any::Any {
+    fn as_any(&self) -> &dyn Any {
         self
     }
 }
@@ -35,7 +36,7 @@ impl Event for NetworkEvent {
         "network"
     }
 
-    fn as_any(&self) -> &dyn std::any::Any {
+    fn as_any(&self) -> &dyn Any {
         self
     }
 }

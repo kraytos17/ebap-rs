@@ -4,6 +4,5 @@ name = "ebap-rs"
 version = "0.1.0"
 
 [dependencies]
-async-trait = "0.1.81"
 reqwest = "0.12.7"
-tokio = {version = "1.39.3", features = ["full"]}
+tokio = {version = "1.39.3", features = ["rt-multi-thread", "macros", "sync", "fs"]}

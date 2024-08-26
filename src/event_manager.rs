@@ -1,12 +1,12 @@
 use crate::event::{FileReadEvent, NetworkEvent};
 use crate::event_handler::EventHandler;
-use crate::event_listener::EventListener;
+use crate::event_listener::EventListenerEnum;
 use std::borrow::Cow::Borrowed;
 use std::sync::Arc;
 
 pub struct EventManager {
     event_handler: Arc<EventHandler>,
-    listeners: Vec<Arc<dyn EventListener>>,
+    listeners: Vec<Arc<EventListenerEnum>>,
 }
 
 impl EventManager {
@@ -17,7 +17,7 @@ impl EventManager {
         }
     }
 
-    pub fn add_listener(&mut self, listener: Arc<dyn EventListener>) {
+    pub fn add_listener(&mut self, listener: Arc<EventListenerEnum>) {
         self.listeners.push(listener);
     }
 
